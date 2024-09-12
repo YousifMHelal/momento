@@ -2,7 +2,14 @@ import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Link, useNavigate } from "react-router-dom";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "../../components/ui/form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../../components/ui/form";
 import { Input } from "../../components/ui/input";
 import { Button } from "../../components/ui/button";
 import { useToast } from "../../hooks/use-toast";
@@ -10,7 +17,6 @@ import { useUserContext } from "../../context/AuthContext";
 import { UseSignInAccount } from "../../lib/react-query/queriesAndMutations";
 import { SigninValidation } from "../../lib/validation";
 import Loader from "../../components/Shared/Loader";
-
 
 const SigninForm = () => {
   const { toast } = useToast();
@@ -32,7 +38,7 @@ const SigninForm = () => {
     const session = await signInAccount(user);
 
     if (!session) {
-      toast({ title: "Login failed. Please try again." });
+      toast({ title: "Wrong email or password, Please try again.." });
 
       return;
     }
@@ -44,7 +50,7 @@ const SigninForm = () => {
 
       navigate("/");
     } else {
-      toast({ title: "Login failed. Please try again.", });
+      toast({ title: "Login failed. Please try again." });
 
       return;
     }
